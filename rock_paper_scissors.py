@@ -1,19 +1,26 @@
 import random
 
-print("1) Rock")
-print("2) Paper")
-print("3) Scissors")
+choices = {1: "Rock", 2: "Paper", 3: "Scissors"}
 
-player = int(input("Enter your choice (1-3): "))
-computer = random.randint(1, 3)
+print("1) Rock\n2) Paper\n3) Scissors")
 
-if player == computer:
-    print("It's a tie!")
-elif (player == 1 and computer == 3):
-    print("You win! Rock crushes Scissors.")
-elif (player == 2 and computer == 1):
-    print("You win! Paper covers Rock.")
-elif (player == 3 and computer == 2):
-    print("You win! Scissors cut Paper.")
-else:
-    print("You lose! Better luck next time!")
+try:
+    player = int(input("Enter your choice (1-3): "))
+    if player not in choices:
+        print("Invalid choice. Please enter 1, 2, or 3.")
+        exit()
+
+    computer = random.randint(1, 3)
+
+    print(f"\nYou chose: {choices[player]}")
+    print(f"Computer chose: {choices[computer]}")
+
+    if player == computer:
+        print("It's a tie!")
+    elif (player - computer) % 3 == 1:
+        print("You win!")
+    else:
+        print("You lose! Better luck next time!")
+
+except ValueError:
+    print("Invalid input. Please enter a number between 1 and 3.")
